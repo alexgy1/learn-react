@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      defer
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/@babel/standalone@7.14.6/babel.min.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- https://babeljs.io/docs/en/babel-standalone -->
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            msg: 111,
+          };
+        }
+
+        add() {
+          console.log(this);
+          //   this.state.msg = 222; //可以改 但是ui不会变化
+          //需要使用react setState的方式 它才知道要更新视图
+
+          this.setState({
+            msg: parseInt(this.state.msg) + 2,
+          });
+          console.log(this.state.msg);
+        }
+        render() {
+          return (
+            <div>
+              <h1> hello class Component msg is {this.state.msg}</h1>;
+              <button onClick={this.add.bind(this)}>change msg + 2 </button>
+            </div>
+          );
+        }
+      }
+
+      console.log(new Text().render);
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
